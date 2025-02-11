@@ -3,5 +3,5 @@
 - Revisão de Conteúdo 
   - Html
   - Css
-  -Respassividade
-  -MediaQuery
+  - Respassividade
+  - MediaQuery
