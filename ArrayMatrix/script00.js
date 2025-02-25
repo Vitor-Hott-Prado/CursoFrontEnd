@@ -60,6 +60,34 @@ arrayMisto.splice(2,1);
 console.log(arrayMisto);
 
 //operações acançadas de Array
+//map - novos valores
+let valores = [10, 20 ,30, 40, 50];
+let valoresDobro = valores.map(x => x*2);
+console.log(valoresDobro);
+
+//filter- comparação
+let valoresfilter =  valores.filter(x => x>25);
+console.log(valoresfilter);
 
 
+//desafio (filtro x<35) && (x*3) 
 
+// Triplos
+let Valores = [10, 20, 30];
+let ValoresTriplos = Valores.map(x => x*3);
+console.log(ValoresTriplos);
+//(x<35)
+let Valoresfilter = Valores.filter(x => x<35);
+console.log(Valoresfilter);
+
+
+//reduce ([] - > let x)
+let soma = valores.reduce((ValorSoma,ValorElemnto) =>ValorSoma+ValorElemnto);
+console.log(soma);
+
+
+//sort (organizar/ordenado)
+let aleatorio = [7,4,2,9,1,5,8,3,6]
+console.log(aleatorio);
+let ordenado = aleatorio.sort();
+console.log(ordenado);
