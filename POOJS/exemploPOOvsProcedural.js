@@ -1,135 +1,117 @@
-//diferencça entre POO e Procedural(estrutural)
+// diferença entre POO e Procedural (estrutural)
 
 //procedural
-// declaração de variavel
+//declaração de variavel
 let produto1 = {
-    nome: "Celular",
-    preco: 1000,
-    desconto: function () {
+  nome: "Celular",
+  preco: 1000,
+  deconto: function(){
       return this.preco * 0.1;
-    },
-  }; //coleção
-  
-  let produto2 = {
-    nome: "Camera Digital",
-    preco: 5000,
-    desconto: function () {
+  }
+}//coleção
+
+let produto2 = {
+  nome: "Camera digital",
+  preco: 5000,
+  deconto: function(){
       return this.preco * 0.1;
-    },
-  }; //coleção
-  
-  // X
-  
-  // POO - classe de produtos
-  
-  class Produto {
-    //atributos
-    #nome; // # privado
-    #preco; // # privado
-  
-    constructor(nome, preco) {
+  }
+}//coleção
+
+// X
+
+
+
+// POO - classe de produtos
+
+class Produto {
+  //atributos
+  #nome; // # = privado
+  #preco; // # = privado
+
+  constructor(nome, preco){
       this.#nome = nome;
       this.#preco = preco;
-    }
-    //criar métodos getter e setter
-    get getNome() {
-      return this.#nome;
-    }
-    get getPreco() {
-      return this.#preco;
-    }
-    desconto() {
-      return this.getPreco * 0.1; //erro ao chamar o this.preco, pois o atributo é privado
-    }
   }
-  
-  //instaciar um objeto
-  let p1 = new Produto("Impressora", 2000);
-  let p2 = new Produto("Tablet", 1500);
-  
-  //exemplos de uso de POO
-  class Pessoa {
-    //atributos privados
-    #nome;
-    #idade;
-    #cpf;
-  
-    //construtor
-    constructor(nome, idade, cpf) {
+  get getNome(){
+      return this.#nome;
+  }
+  get getPreco(){
+      return this.#preco;
+  }
+  deconto(){
+      return this.getPreco * 0.1;  //erro ao chamar o this.preco, pois o atributo é privado
+  }
+}
+
+// instanciar um objeto
+let p1 = new Produto("Impressoras", 2000);
+let p2 = new Produto("Tablet", 1500);
+
+
+//examplos de uso de POO
+
+class Pessoa {
+  //atributos privados
+  #nome;
+  #idade;
+  #cpf;
+
+  //construtor
+  constructor(nome, idade, cpf){
       this.#nome = nome;
       this.#idade = idade;
       this.#cpf = cpf;
-    }
-    //metodos públicos
-    get getNome() {
-      return this.#nome;
-    }
-    get getIdade() {
-      return this.#idade;
-    }
-    get getCpf() {
-      return this.#cpf;
-    }
-  
-    set setIdade(idade) {
-      this.#idade = idade;
-    }
-  
-    //métodos Informações
-    exibirInfo() {
-      console.log(
-        `Nome: ${this.getNome} \nIdade: ${this.getIdade} \nCPF: ${this.getCpf}`
-      );
-    }
   }
-  
-  let pessoa1 = new Pessoa("Vitor", 30, "123.456.789-00");
-  let pessoa2 = new Pessoa("Lais", 35, "987.654.321-00");
-  
-  pessoa1.exibirInfo();
-  pessoa2.exibirInfo();
-  
-  pessoa1.setIdade = 31;//atualizei a idade da pessoa1
-  pessoa1.exibirInfo(); //exibir as informações atualizadas
-  
+  //metodos publicos
+  get getNome(){return this.#nome;}
+  get getIdade(){return this.#idade;}
+  get getCpf(){return this.#cpf;}
 
-//   /herença (extend)
+  set setIdade(idade){this.#idade = idade;}
 
-class Funcionario extends Pessoa {
-    #cargo;
-    #salario;
-
-    //construtor
-    constructor(nome, idade, cpf, cargo, salario) {
-      super(nome, idade, cpf);//chm o constrtor da superclasse
-      this.#cargo= cargo;
-      this.#salario = salario;    
-  }
- //metodos publicos
- gete getCargo(){
-    return this.#cargo;
-
- }
-   get getSalario(){
-    return this.#salario;
- }
-  set setSalario(salario){
-    this.#salario = salario;
-
-  }
-  get getCargo(){ 
-    return this.#cargo;
-  }
- //metodos informações
+  //metodos para informacoes
   exibirInfo(){
-    super.exibirInfo(); //chma da superclasse
-    console.log(`Cargo: ${this.#cargo} \nSalario: ${this.#salario}`);
+      console.log(`Nome: ${this.#nome} \nIdade: ${this.#idade} \nCPF: ${this.#cpf}`);
   }
-
 }
 
-let Funcionario1 = new Funcionario("Vitor", 30, "123.456.789-00", "Desenvolvedor", 7000); 
+let pessoa1 = new Pessoa("Pietro", 17, "123.456.789-00");
+let pessoa2 = new Pessoa("José", 20, "333.456.789-00");
 
-Funcionario1.exibirInfo();
-Funcionario01.setSalario = 9000;
-Funcionario1.exibirInfo();
+pessoa1.exibirInfo();
+pessoa2.exibirInfo();
+
+pessoa1.setIdade = 18; //atualizei a idade da pessoa1
+pessoa1.exibirInfo(); //exibir as informações atualizadas
+
+//HERANÇA     (extends)
+class Funcionario extends Pessoa{
+  //atributos privados
+  #cargo;
+  #salario;
+
+  //construtor
+  constructor(nome, idade, cpf, cargo, salario){
+      super(nome, idade, cpf); //chamar o construtor da superclasse
+      this.#cargo = cargo;
+      this.#salario = salario;
+  }
+
+  //metodos publicos
+  get getCargo(){return this.#cargo;}
+  get getSalario(){return this.#salario;}
+  set setSalario(salario){this.#salario = salario;}
+  set setCargo(cargo){this.#cargo = cargo;}
+
+  //metodos para exibirinfo
+  exibirInfo(){
+      super.exibirInfo(); //chama o metodo exibirInfo da superclasse
+      console.log(`Cargo: ${this.#cargo} \nSalário: ${this.#salario}`);
+  }
+}
+
+let funcionario1 = new Funcionario("Vitor", 25, "123.446.789-00", "Motorista", 3000);
+funcionario1.exibirInfo();
+funcionario1.setSalario = 3500;
+funcionario1.exibirInfo(); //exibir as informações atualizadas
