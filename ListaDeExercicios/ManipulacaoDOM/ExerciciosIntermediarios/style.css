@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  h1 {
+    font-size: 36px;
+    text-align: center;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  input {
+    padding: 10px;
+    margin-right: 10px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin: 5px 0;
+    font-size: 18px;
+  }
+  
+  #botaoMudarTema {
+    margin-top: 20px;
+  }
+  
+  /* Estilo para o modo escuro */
+  body.modo-escuro {
+    background-color: #333;
+    color: white;
+  }
+  
+  body.modo-escuro button {
+    background-color: #444;
+    color: white;
+    border: 1px solid #555;
+  }
+  
+  body.modo-escuro input {
+    background-color: #444;
+    color: white;
+    border: 1px solid #555;
+  }
+  
+  /* Estilo para os parágrafos adicionados dinamicamente */
+  #container-paragrafos p {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
