@@ -5,16 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './template/header/header.component';
 import { FootersComponent } from './template/footers/footers.component';
+import { InicioComponent } from './pages/inicio/inicio.component';
+import { ProdutosComponent } from './pages/produtos/produtos.component';
+import { ContatoComponent } from './pages/contato/contato.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FootersComponent
+    FootersComponent,
+    InicioComponent,
+    ProdutosComponent,
+    ContatoComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
