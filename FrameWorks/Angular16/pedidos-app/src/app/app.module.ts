@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { ClienteFormComponent } from './componentes/cliente-form/cliente-form.component';
 import { ProdutoFormComponent } from './componentes/produto-form/produto-form.component';
 import { PedidoFormComponent } from './componentes/pedido-form/pedido-form.component';
+
+import { FormsModule } from '@angular/forms';
 import { PedidoListComponent } from './componentes/pedido-list/pedido-list.component';
 
 @NgModule({
@@ -15,12 +17,10 @@ import { PedidoListComponent } from './componentes/pedido-list/pedido-list.compo
     ProdutoFormComponent,
     PedidoFormComponent,
     PedidoListComponent
+
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
