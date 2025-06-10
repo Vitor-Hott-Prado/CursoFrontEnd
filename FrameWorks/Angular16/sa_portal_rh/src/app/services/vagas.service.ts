@@ -7,7 +7,7 @@ import { Vaga } from '../models/vaga.model';
   providedIn: 'root',
 })
 export class VagasService {
-  private apiUrl = 'htps://localhost:3004/vagas'; // Endereço da API
+  private apiUrl = 'http://localhost:3004/vagas'; // Endereço da API
 
   constructor(private http: HttpClient) {}
 
@@ -20,8 +20,23 @@ export class VagasService {
   }
 
   // post --
+  postVaga(vaga: Vaga): Observable<Vaga[]>{ //méto para enviar os dados paa API
+    return this.http.post<Vaga[]>(this.apiUrl,vaga);
+    //Obervable -> rxjs = > tradutos de Json -> typescript
+  }
 
   //put
+  //nomeDoMétodo(parametros)
+  putVaga(id: any, vaga: Vaga): Observable<Vaga[]>{//coleção chave -> valor
+    //http://localhost:3004/vagas/XXXX
+    const url = this.apiUrl+"/"+id; //contrui a url join (apirUrl+id)
+    return this.http.put<Vaga[]>(url, vaga);
+  }
 
   //delete
+
+  deleteVaga(id:any): Observable<Vaga[]>{
+    const url = this.apiUrl+"/"+id;
+    return this.http.delete<Vaga[]>(url);
+  }
 }

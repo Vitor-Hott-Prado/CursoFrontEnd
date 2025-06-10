@@ -9,6 +9,8 @@ import { CurriculosComponent } from './views/curriculos/curriculos.component';
 import { VagasComponent } from './views/vagas/vagas.component';
 import { HomeComponent } from './views/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PainelVagasComponent } from './views/painel-vagas/painel-vagas.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,12 +20,15 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     CurriculosComponent,
     VagasComponent,
-    HomeComponent
+    HomeComponent,
+    PainelVagasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

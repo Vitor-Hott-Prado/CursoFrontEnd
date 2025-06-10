@@ -20,26 +20,18 @@ export class VagasComponent implements OnInit {
   }
 
   //função para lisar as vagas
-  //função para listar as vagas
 
-
-  listarVagas(){
-    this._vagasService.getVagas().subscribe( // subscribe é um método do Observable que permite recerber os dados e tratar para vetor
-      (e) => { //listar vaga por vaga dentro do vetor
-        this.vagas= e.map(
-          (vaga) => {
-            return new Vaga(
-              vaga.id,
-              vaga.nome,
-              vaga.foto,
-              vaga.descricao,
-              vaga.salario
-            );
-          }
-        );
+  listarVagas() {
+    this._vagasService.getVagas().subscribe(
+      // subscribe é um método do Observable que permite recerber os dados e tratar para vetor
+      (e) => {
+        // listar vaga por vaga dentro do vetor
+        this.vagas = e.map((vaga) => {
+          return Vaga.fromMap(vaga);
+        });
       }
-    )
+    );
   }
-
 }
+
 
