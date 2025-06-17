@@ -1,0 +1,13 @@
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+  <input type="number" placeholder="Usuário ID" [(ngModel)]="curriculo.usuarioId" name="usuarioId" required>
+  <input type="text" placeholder="Nome Completo" [(ngModel)]="curriculo.nomeCompleto" name="nomeCompleto" required>
+  <input type="email" placeholder="Email" [(ngModel)]="curriculo.email" name="email" required>
+  <input type="text" placeholder="Telefone" [(ngModel)]="curriculo.telefone" name="telefone">
+  <input type="text" placeholder="CPF" [(ngModel)]="curriculo.cpf" name="cpf">
+  <input type="date" placeholder="Data de Nascimento" [(ngModel)]="curriculo.dataNascimento" name="dataNascimento">
+  <input type="text" placeholder="CEP" [(ngModel)]="curriculo.cep" name="cep">
+  <input type="text" placeholder="Formação Acadêmica (separe por vírgula)" [(ngModel)]="curriculo.formacaoAcademica" name="formacaoAcademica">
+  <input type="text" placeholder="Experiência Profissional (separe por vírgula)" [(ngModel)]="curriculo.experienciaProfissional" name="experienciaProfissional">
+  <input type="text" placeholder="Habilidades (separe por vírgula)" [(ngModel)]="curriculo.habilidades" name="habilidades">
+  <button type="submit" [disabled]="form.invalid">Salvar</button>
+</form>

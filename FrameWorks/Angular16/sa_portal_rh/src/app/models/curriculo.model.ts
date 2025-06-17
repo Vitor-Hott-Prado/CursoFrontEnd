@@ -1,5 +1,6 @@
 export class Curriculo {
 
+
   constructor(
     private _id: number | null,
     private _usuarioId: number,
@@ -16,7 +17,7 @@ export class Curriculo {
     private _dataAtualizacao: string | null = null
   ) {}
 
-  // --- Métodos de Acesso Público (Getters e Setters) ---
+
 
   public get id(): number | null {
     return this._id;
@@ -95,6 +96,21 @@ export class Curriculo {
     this._habilidades = v;
   }
 
+  public get dataCriacao(): string | null {
+    return this._dataCriacao;
+  }
+  public set dataCriacao(v: string | null) {
+    this._dataCriacao = v;
+  }
+
+  public get dataAtualizacao(): string | null {
+    return this._dataAtualizacao;
+  }
+  public set dataAtualizacao(v: string | null) {
+    this._dataAtualizacao = v;
+  }
+
+
   public toMap(): { [key: string]: any } {
     return {
       id: this._id,
@@ -107,11 +123,13 @@ export class Curriculo {
       cep: this._cep,
       formacaoAcademica: this._formacaoAcademica,
       experienciaProfissional: this._experienciaProfissional,
-      habilidades: this._habilidades
+      habilidades: this._habilidades,
+      dataCriacao: this._dataCriacao,
+      dataAtualizacao: this._dataAtualizacao
     };
   }
 
-
+ 
   static fromMap(map: any): Curriculo {
     return new Curriculo(
       map.id,
@@ -122,9 +140,11 @@ export class Curriculo {
       map.cpf,
       map.dataNascimento,
       map.cep,
-      map.formacaoAcademica || [],
-      map.experienciaProfissional || [],
-      map.habilidades || [],
+      map.formacaoAcademica || [],       // Garante que seja um array, mesmo se o campo estiver faltando no map
+      map.experienciaProfissional || [], // Garante que seja um array
+      map.habilidades || [],             // Garante que seja um array
+      map.dataCriacao || null,          // Garante null se o campo estiver faltando
+      map.dataAtualizacao || null       // Garante null se o campo estiver faltando
     );
   }
 }
