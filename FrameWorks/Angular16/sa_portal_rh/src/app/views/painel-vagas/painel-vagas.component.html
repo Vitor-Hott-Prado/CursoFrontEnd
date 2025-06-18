@@ -1,19 +1,19 @@
 <h2>Cadastrar</h2>
 <form action="">
   <label for="">ID</label>
-  <input type="text"  [(ngModel)]="vaga.id"> <br>
+  <input type="text" name="id" [(ngModel)]="vaga.id"> <br>
 
   <label for="">Nome</label>
-  <input type="text"  [(ngModel)]="vaga.nome"> <br>
+  <input type="text" name="nome" [(ngModel)]="vaga.nome"> <br>
 
   <label for="">Foto</label>
-  <input type="text"  [(ngModel)]="vaga.foto"> <br>
+  <input type="text" name="foto" [(ngModel)]="vaga.foto"> <br>
 
   <label for="">Descrição</label>
-  <input type="text"  [(ngModel)]="vaga.descricao"> <br>
+  <input type="text" name="descricao" [(ngModel)]="vaga.descricao"> <br>
 
   <label for="">Salário</label>
-  <input type="text"  [(ngModel)]="vaga.salario"> <br>
+  <input type="text" name="salario" [(ngModel)]="vaga.salario"> <br>
 
   <button type="button" (click)="cadastrarVaga()">Cadastrar Vaga</button>
   <button type="button" (click)="atualizarVaga(vaga.id)">Atualizar Vaga</button>
@@ -36,13 +36,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="vaga-row" *ngFor="let vaga of vagas">
-        <td>{{vaga.id}}</td>
-        <td>{{vaga.nome}}</td>
-        <td>{{vaga.descricao}}</td>
-        <td>R$ {{vaga.salario}},00</td>
+      <tr class="vaga-row" *ngFor="let v of vagas">
+        <td>{{v.id}}</td>
+        <td>{{v.nome}}</td>
+        <td>{{v.descricao}}</td>
+        <td>R$ {{v.salario}},00</td>
         <td>
-          <button class="btn-listar" type="button" (click)="listarVgaPorid(vaga)">
+          <button class="btn-listar" type="button" (click)="listarVgaPorid(v)">
             Listar
           </button>
         </td>

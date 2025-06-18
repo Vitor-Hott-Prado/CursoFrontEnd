@@ -26,7 +26,13 @@ export class PainelVagasComponent implements OnInit {
   listarVagas(): void {
     this._vagasService.getVagas().subscribe(
       (e) => {
-        this.vagas = e.map((vaga) => Vaga.fromMap(vaga));
+        this.vagas = e.map((v) => new Vaga(
+          v.id,
+          v.nome,
+          v.foto,
+          v.descricao,
+          v.salario
+        ));
       },
       (error) => {
         console.error('Erro ao Listar Vagas:', error);

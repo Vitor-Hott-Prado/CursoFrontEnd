@@ -7,7 +7,7 @@ import { Curriculo } from '../models/curriculo.model';
   providedIn: 'root'
 })
 export class CurriculoService {
-  private apiUrl = "http://localhost:3004/curriculos"; // endereço da Api
+  private apiUrl = "http://localhost:3005/curriculos"; // endereço da Api
   constructor(private http: HttpClient) {
     
   }
@@ -35,5 +35,10 @@ export class CurriculoService {
   deleteCurriculo(id:any): Observable<Curriculo[]>{
     const url = this.apiUrl+"/"+id;
     return this.http.delete<Curriculo[]>(url);
+  
+  }
+getCurriculoById(id: number): Observable<Curriculo> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Curriculo>(url);
   }
 }
