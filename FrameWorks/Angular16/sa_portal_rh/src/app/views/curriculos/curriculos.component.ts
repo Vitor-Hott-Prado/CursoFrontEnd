@@ -1,77 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { Curriculo } from '../../models/curriculo.model';
-import { CurriculoService } from '../../services/curriculos.service';
+import { Curriculo } from 'src/app/models/curriculo.model';
+import { CurriculoService } from 'src/app/services/curriculos.service';
 
 @Component({
   selector: 'app-curriculos',
   templateUrl: './curriculos.component.html',
-  styleUrls: ['./curriculos.component.css']
+  styleUrls: ['./curriculos.component.scss']
 })
-export class CurriculosComponent implements OnInit {
-  curriculos: Curriculo[] = [];
-  novoCurriculo: any = {
-    usuarioId: 0,
-    nomeCompleto: '',
-    email: '',
-    telefone: '',
-    cpf: '',
-    dataNascimento: '',
-    cep: '',
-    formacaoAcademica: '',
-    experienciaProfissional: '',
-    habilidades: ''
-  };
+export class CurriculosComponent implements OnInit{
+  public curriculos: Curriculo[] = []; // vetor para armazenar os currículos do BD
 
-  constructor(private curriculoService: CurriculoService) {}
+  constructor(private _curriculoService: CurriculoService) {}
 
   ngOnInit(): void {
     this.listarCurriculos();
   }
-
-  listarCurriculos(): void {
-    this.curriculoService.getCurriculos().subscribe({
-      next: (dados: Curriculo[]) => {
-        this.curriculos = dados;
-      },
-      error: (err) => alert(err.message)
-    });
-  }
-
-  adicionarCurriculo(): void {
-    // Converte campos string para array
-    const curriculoParaEnviar = new Curriculo(
-      null,
-      this.novoCurriculo.usuarioId,
-      this.novoCurriculo.nomeCompleto,
-      this.novoCurriculo.email,
-      this.novoCurriculo.telefone,
-      this.novoCurriculo.cpf,
-      this.novoCurriculo.dataNascimento,
-      this.novoCurriculo.cep,
-      this.novoCurriculo.formacaoAcademica.split(',').map((s: string) => s.trim()).filter((s: string) => s),
-      this.novoCurriculo.experienciaProfissional.split(',').map((s: string) => s.trim()).filter((s: string) => s),
-      this.novoCurriculo.habilidades.split(',').map((s: string) => s.trim()).filter((s: string) => s),
-      null,
-      null
-    );
-
-    this.curriculoService.createCurriculo(curriculoParaEnviar).subscribe({
-      next: () => {
-        this.listarCurriculos();
-        this.novoCurriculo = {
-          usuarioId: 0,
-          nomeCompleto: '',
-          email: '',
-          telefone: '',
-          cpf: '',
-          dataNascimento: '',
-          cep: '',
-          formacaoAcademica: '',
-          experienciaProfissional: '',
-          habilidades: ''
-        };
-      },
-      error: (err) => alert(err.message)
-    });
+  listarCurriculos() {
+    this._curriculoService.getCurriculos().subscribe(
+      (e) => [
+        this.curriculos = e.map(
+          (curriculo) => { 
+            return Curriculo.fromMap(curriculo);
+          }
+        )
+      ]
+    )
   }
 }

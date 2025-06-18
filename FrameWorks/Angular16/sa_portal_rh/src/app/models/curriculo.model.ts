@@ -1,150 +1,83 @@
 export class Curriculo {
-
-
   constructor(
-    private _id: number | null,
-    private _usuarioId: number,
-    private _nomeCompleto: string,
-    private _email: string,
-    private _telefone: string,
-    private _cpf: string,
-    private _dataNascimento: string,
-    private _cep: string,
-    private _formacaoAcademica: string[],
-    private _experienciaProfissional: string[],
-    private _habilidades: string[],
-    private _dataCriacao: string | null = null,
-    private _dataAtualizacao: string | null = null
+    private _id: number,
+    private _nome: string,
+    private _idade: number,
+    private _linkedin: string,
+    private _github: string,
+    private _experiencia: string
   ) {}
 
-
-
-  public get id(): number | null {
+  // Getters and setters de ID
+  public get id(): number {
     return this._id;
   }
-  public set id(v: number | null) {
-    this._id = v;
+  public set id(id: number) {
+    this._id = id;
   }
 
-  public get usuarioId(): number {
-    return this._usuarioId;
+  // Getters and Setters de NOME
+  public get nome(): string {
+    return this._nome;
   }
-  public set usuarioId(v: number) {
-    this._usuarioId = v;
-  }
-
-  public get nomeCompleto(): string {
-    return this._nomeCompleto;
-  }
-  public set nomeCompleto(v: string) {
-    this._nomeCompleto = v;
+  public set nome(value: string) {
+    this._nome = value;
   }
 
-  public get email(): string {
-    return this._email;
+  // Getters and Setters IDADE
+  public get idade(): number {
+    return this._idade;
   }
-  public set email(v: string) {
-    this._email = v;
-  }
-
-  public get telefone(): string {
-    return this._telefone;
-  }
-  public set telefone(v: string) {
-    this._telefone = v;
+  public set idade(value: number) {
+    this._idade = value;
   }
 
-  public get cpf(): string {
-    return this._cpf;
+  // Getters and Setters de LINKEDIN
+  public get linkedin(): string {
+    return this._linkedin;
   }
-  public set cpf(v: string) {
-    this._cpf = v;
-  }
-
-  public get dataNascimento(): string {
-    return this._dataNascimento;
-  }
-  public set dataNascimento(v: string) {
-    this._dataNascimento = v;
+  public set linkedin(value: string) {
+    this._linkedin = value;
   }
 
-  public get cep(): string {
-    return this._cep;
+  // Getters and Setters GITHUB
+  public get github(): string {
+    return this._github;
   }
-  public set cep(v: string) {
-    this._cep = v;
-  }
-
-  public get formacaoAcademica(): string[] {
-    return this._formacaoAcademica;
-  }
-  public set formacaoAcademica(v: string[]) {
-    this._formacaoAcademica = v;
+  public set github(value: string) {
+    this._github = value;
   }
 
-  public get experienciaProfissional(): string[] {
-    return this._experienciaProfissional;
+  // Getters and Setters EXPERIENCIA
+  public get experiencia(): string {
+    return this._experiencia;
   }
-  public set experienciaProfissional(v: string[]) {
-    this._experienciaProfissional = v;
-  }
-
-  public get habilidades(): string[] {
-    return this._habilidades;
-  }
-  public set habilidades(v: string[]) {
-    this._habilidades = v;
+  public set experiencia(value: string) {
+    this._experiencia = value;
   }
 
-  public get dataCriacao(): string | null {
-    return this._dataCriacao;
-  }
-  public set dataCriacao(v: string | null) {
-    this._dataCriacao = v;
-  }
-
-  public get dataAtualizacao(): string | null {
-    return this._dataAtualizacao;
-  }
-  public set dataAtualizacao(v: string | null) {
-    this._dataAtualizacao = v;
-  }
-
-
-  public toMap(): { [key: string]: any } {
+  // Conversão de objetos
+  // OBJ to JSON
+  public toMap():{[key:string]: any}{
     return {
-      id: this._id,
-      usuarioId: this._usuarioId,
-      nomeCompleto: this._nomeCompleto,
-      email: this._email,
-      telefone: this._telefone,
-      cpf: this._cpf,
-      dataNascimento: this._dataNascimento,
-      cep: this._cep,
-      formacaoAcademica: this._formacaoAcademica,
-      experienciaProfissional: this._experienciaProfissional,
-      habilidades: this._habilidades,
-      dataCriacao: this._dataCriacao,
-      dataAtualizacao: this._dataAtualizacao
-    };
+      id: this.id,
+      nome: this.nome,
+      idade: this.idade,
+      linkedin: this.linkedin,
+      github: this.github,
+      experiencia: this.experiencia
+    }
   }
 
- 
-  static fromMap(map: any): Curriculo {
+  // JSON to OBJ
+  static fromMap(map:any): Curriculo{
     return new Curriculo(
       map.id,
-      map.usuarioId,
-      map.nomeCompleto,
-      map.email,
-      map.telefone,
-      map.cpf,
-      map.dataNascimento,
-      map.cep,
-      map.formacaoAcademica || [],       // Garante que seja um array, mesmo se o campo estiver faltando no map
-      map.experienciaProfissional || [], // Garante que seja um array
-      map.habilidades || [],             // Garante que seja um array
-      map.dataCriacao || null,          // Garante null se o campo estiver faltando
-      map.dataAtualizacao || null       // Garante null se o campo estiver faltando
-    );
+      map.nome,
+      map.idade,
+      map.linkedin,
+      map.github,
+      map.experiencia
+    )
   }
 }

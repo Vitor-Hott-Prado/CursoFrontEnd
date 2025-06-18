@@ -1,44 +1,16 @@
-<h2>Currículos</h2>
-
-<form (ngSubmit)="adicionarCurriculo()" #form="ngForm">
-  <input type="number" placeholder="Usuário ID" [(ngModel)]="novoCurriculo.usuarioId" name="usuarioId" required>
-  <input type="text" placeholder="Nome Completo" [(ngModel)]="novoCurriculo.nomeCompleto" name="nomeCompleto" required>
-  <input type="email" placeholder="Email" [(ngModel)]="novoCurriculo.email" name="email" required>
-  <input type="text" placeholder="Telefone" [(ngModel)]="novoCurriculo.telefone" name="telefone">
-  <input type="text" placeholder="CPF" [(ngModel)]="novoCurriculo.cpf" name="cpf">
-  <input type="date" placeholder="Data de Nascimento" [(ngModel)]="novoCurriculo.dataNascimento" name="dataNascimento">
-  <input type="text" placeholder="CEP" [(ngModel)]="novoCurriculo.cep" name="cep">
-  <input type="text" placeholder="Formação Acadêmica (separe por vírgula)" [(ngModel)]="novoCurriculo.formacaoAcademica" name="formacaoAcademica">
-  <input type="text" placeholder="Experiência Profissional (separe por vírgula)" [(ngModel)]="novoCurriculo.experienciaProfissional" name="experienciaProfissional">
-  <input type="text" placeholder="Habilidades (separe por vírgula)" [(ngModel)]="novoCurriculo.habilidades" name="habilidades">
-  <button type="submit" [disabled]="form.invalid">Adicionar</button>
-</form>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Telefone</th>
-      <th>CPF</th>
-      <th>Data Nasc.</th>
-      <th>CEP</th>
-      <th>Formação</th>
-      <th>Experiência</th>
-      <th>Habilidades</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let c of curriculos">
-      <td>{{ c.nomeCompleto }}</td>
-      <td>{{ c.email }}</td>
-      <td>{{ c.telefone }}</td>
-      <td>{{ c.cpf }}</td>
-      <td>{{ c.dataNascimento }}</td>
-      <td>{{ c.cep }}</td>
-      <td>{{ c.formacaoAcademica.join(', ') }}</td>
-      <td>{{ c.experienciaProfissional.join(', ') }}</td>
-      <td>{{ c.habilidades.join(', ') }}</td>
-    </tr>
-  </tbody>
-</table>
+<section class="listar-curriculos">
+  <!-- property do data binding *ngFor -->
+   <div *ngFor="let curriculo of curriculos">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Código do Curriculo: {{curriculo.id}}</h5>
+        <h5 class="card-title">Nome do Concorrente: {{curriculo.nome}}</h5>
+        <p class="card-text">Idade do Concorrente: {{curriculo.idade}}</p>
+        <p class="card-text">Linkedin: {{curriculo.linkedin}}</p>
+        <p class="card-text">Github: {{curriculo.github}}</p>
+        <p class="card-text">Experiência: {{curriculo.experiencia}}</p>
+      </div>
+    </div>
+   </div>
+</section>
+<div class="rodape"></div>
