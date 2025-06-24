@@ -1,36 +1,50 @@
+// Variáveis para cores e tipografia
+$color-bg: #ffffff;
+$color-text-primary: #333;
+$color-text-secondary: #555;
+$box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+$font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-.container{
+.container {
   max-width: 1200px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: $color-bg;
+  border-radius: 0.5rem;
+  box-shadow: $box-shadow;
+  font-family: $font-main;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  h1{
-    color: #333;
+  h1 {
+    color: $color-text-primary;
     font-size: 2.5rem;
     margin-bottom: 1rem;
     text-align: center;
 
-    @media(max-width: 800px){
+    @media (max-width: 800px) {
       font-size: 2rem;
     }
 
-    @media(max-width: 480px){
+    @media (max-width: 480px) {
       font-size: 1.5rem;
     }
   }
-  p{
-    color: #555;
+
+  p {
+    color: $color-text-secondary;
     font-size: 1.2rem;
     line-height: 1.6;
     text-align: center;
+    max-width: 90%;
 
-    @media(max-width:640px){
-      font-size: 0.8rem;
+    @media (max-width: 640px) {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 400px) {
+      font-size: 0.9rem;
     }
   }
-
 }
