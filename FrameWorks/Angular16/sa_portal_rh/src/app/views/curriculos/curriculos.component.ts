@@ -24,6 +24,7 @@ export class CurriculosComponent implements OnInit{
           }
         )
       ]
+      
     )
   }
 }
