@@ -1,0 +1,20 @@
+/* estilçao de aplicação  principal */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: auto;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+div{
+  text-align: center;
+  margin-top: 20px;
+  
+}
