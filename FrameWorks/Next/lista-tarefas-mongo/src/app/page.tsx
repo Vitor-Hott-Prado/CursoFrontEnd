@@ -1,12 +1,17 @@
 "use client";
+import { updateTarefa } from "@/controllers/tarefaController";
 import { ITarefa } from "@/models/Tarefa";
+import { asyncWrapProviders } from "async_hooks";
+import { METHODS } from "http";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
  // indicar que é a tela usada pelo cliente-side
 
 export default function Home(){
   //useState => armazenamento localStorage
+  //armazena as tarefas em um vetor
   const [tarefas, setTarefas] = useState<ITarefa[]>([]);
+  //armazena o texto do input (campo de texto da pagina)
   const [newTarefa, setNewTarefa] = useState<string>("");
 
   //useEffect
@@ -21,7 +26,9 @@ export default function Home(){
       const resposta = await fetch("/api/tarefas"); // realiza a conexão http  com o backend
       const data = await resposta.json(); // c verificar esta em Json
       if(data.success){
-        setTarefas(data.data);
+        setTarefas(data.data); // limpo o campo do inpu
+        //se qussesse carregar as tarefas do Banco novamnete
+        //fetchTarefas(); - service-side
       }
     } catch (error) {
       console.error(error);
@@ -48,12 +55,29 @@ export default function Home(){
     }
   }
 
-    //update Tarefa
-  const atualizarTarefa = async () => {
+//------------------------------------------------------------------------------------------
+  //update Tarefa
+  const atualizarTarefa = async (id: string, statusTarefa: boolean) => {
+    try {
+      const resposta = await fetch(`/api/tarefas/${id}`, {
+        method: "PATCH",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({concluida:!statusTarefa})
+      });
+      const data = await resposta.json();
+      if(data.success){
+        //server-side
+        fetchTarefas();
+        //setTarefas(tarefas.map((tarefa)=>
+        // (tarefa._id ===id ? data.data : tarefa))) cliente-side
+      }
+    } catch (error) {
+      
+    }
   }
 
 
-
+//------------------------------------------------------------------------------------------
   //delete Tarefa
 const deletarTarefa = async (id: number) => {
   try {
@@ -71,6 +95,9 @@ const deletarTarefa = async (id: number) => {
   }
 };
 
+//------------------------------------------------------------------------------------------
+
+
 
   return(
     <div>
@@ -79,18 +106,20 @@ const deletarTarefa = async (id: number) => {
         <input type="text"
         value={newTarefa}
         onChange={(e:ChangeEvent<HTMLInputElement>)=> setNewTarefa(e.target.value)} 
-        placeholder="Adione uma nova Tarefa"/>
+        placeholder="Adicione uma nova Tarefa"/>
         <button type="submit">Adicionar Tarefa</button>
       </form>
       <ul>
         {tarefas.map((tarefa)=> (
           <li key={tarefa._id.toString()}>
-            
+            <input type="checkbox" 
+            checked={tarefa.concluida}
+            onChange={()=>updateTarefa(tarefa._id.toString(), tarefa.concluida)}/>
+            {tarefa.titulo}            
           </li>
         ))}
       </ul>
 
     </div>
   );
-
 }

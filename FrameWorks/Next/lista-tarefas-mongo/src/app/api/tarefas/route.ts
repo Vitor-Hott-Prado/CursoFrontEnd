@@ -7,8 +7,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
     try {
-        const tarefa = await getAllTarefas();
-        //trta a respota obtida da conexão com o MongoDB
+        const tarefa = await getAllTarefas(); // chama o controlle 
+        //trata a respota obtida da conexão com o MongoDB
         return NextResponse.json({sucess:true, data:tarefa});
     } catch (error) {
         return NextResponse.json({
@@ -18,10 +18,10 @@ export async function GET() {
     }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) { //req: são os dados que estou enviando
     try {
         const data = await req.json(); //verificar se o conteudo esta em Json 
-        const newTarefa = await createTarefa
+        const newTarefa = await createTarefa //controller
         return NextResponse.json({sucesss:true, data: newTarefa}, {status:201})
     } catch (error) {
         return NextResponse.json({

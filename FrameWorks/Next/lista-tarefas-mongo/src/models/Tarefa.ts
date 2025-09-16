@@ -12,7 +12,7 @@ export interface ITarefa extends Document{
 
 // criar a Regra (Schema) do MongoDB
 
-const TarefaSchema: Schema<ITarefa> = new mongoose.Schema({
+const TarefaSchema: Schema<ITarefa> = new mongoose.Schema({ //Esquema da tabela ou modelo 
     titulo:{
         type: String,
         required: [true,"O Título é obrigatório"],
@@ -29,7 +29,7 @@ const TarefaSchema: Schema<ITarefa> = new mongoose.Schema({
     }
 })
 
-// export do modelo
+// export do modelo (tanto para enviar para o banco quanto para receber einfo do Banco  )
 
 const Tarefa: Model<ITarefa> = mongoose.models.Tarefa || mongoose.model<ITarefa>("Tarefa", TarefaSchema);
 
