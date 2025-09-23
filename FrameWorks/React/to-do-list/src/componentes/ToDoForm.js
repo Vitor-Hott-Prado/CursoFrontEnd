@@ -2,6 +2,8 @@
 import "./toDoFomr.css"
 import { useState } from "react"
 
+
+// funç~çao ToDOform ->
 const TodoForm = ({addTarefa}) =>{
     //estado para armazenar o valor do input (campo para inserir a tarefa)
     const [tarefa, setTarefa] = useState("");
