@@ -59,17 +59,41 @@ classDiagram
         +String id
         +string titulo
         +String descricao
-        +String tipoManutrncao
-        +String status 
-        +String idTecnico 
+        +String tipoManutencao
+        +String status
+        +String idTecnico
         +String IdEquipamento
         +create()
         +read()
         +update()
         +delete()
     }
-    
-    Usuario "1" -- "1+" OrdemServico : "é responável por"
+
+    Usuario "1" -- "1+" OrdemServico : "é resposável por"
     Equipamento "1" -- "1+" OrdemServico : "associado a"
 
-    ```
+```
+ #### Explicação do Diagrama de Classe
+ - Um Usuário (Técnico) por ser responsável por várias Ordens de Servico
+ - Um Equipamento por estar associado a várias Ordens de Serviço
+
+ 2. ### Diagrama de Caso de Uso
+ Ilustrar as interações dos diferentes tipos de usuários (atores) com as funcionalidades do sistema
+
+ 
+```
+
+  %% Relacionamentos
+  Tecnico -- "Abre / Atualiza" --> AbrirOS
+  Tecnico -- "Consulta" --> VisualizarOS
+  Tecnico -- "Consulta" --> VisualizarEquip
+
+  Gestor -- "Consulta / Aprova" --> VisualizarOS
+  Gestor -- "Consulta" --> VisualizarEquip
+  Gestor -- "Visualiza" --> VisualizarRelatorio
+
+  Admin -- "Gerencia" --> GerenciarUsuarios
+  Admin -- "Gerencia" --> GerenciarEquip
+  Admin -- "Configura" --> ConfigSystem
+
+``` 
