@@ -81,7 +81,7 @@ classDiagram
  Ilustrar as interações dos diferentes tipos de usuários (atores) com as funcionalidades do sistema
 
  
-```
+```mermaid
 
   %% Relacionamentos
   Tecnico -- "Abre / Atualiza" --> AbrirOS
