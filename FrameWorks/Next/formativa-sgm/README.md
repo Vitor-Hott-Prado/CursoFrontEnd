@@ -21,8 +21,14 @@ O projeto consiste no desenvolvimento de um Sistema de Gestão de Manutenção (
 1. ### Diagrama de Classes
 Este Diagrama modela as principais entidades do sistema:
 - Usuários (User/Usuarios);
+    - atributos: id, nome, email, senha, função
+    - métodos: create, read, update, delete, login, logout
 - Máquinas/Equipamentos (Equipment);
+    - atributos: id, modelo, marca, numSerie, status, localizacao
+    - métodos: create, read, update, delete
 - Ordem de Serviço(Service);
+    - atributos: id, titulo, descricao, idEquipamento, idTecnico, tipoManutencao
+    - métodos: create, read, update, delete
 
 ```mermaid
 
@@ -156,56 +162,32 @@ organizados por categorias, juntocom a provabilidae, impacto e estrategias de mt
 
 ---
 
-## Riscos écnicos
+### Riscos Técnicos
+______________________________________________________________________________________________________________________________________________________________________________________________________________
+| ID  | Risco                                     | Probabilidade | Impacto | Mitigação                                                                                                                       |
+|-----|-------------------------------------------|---------------|---------|---------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Chave secreta do JWT comprometida         | Média         | Alto    | Utilizar chaves secretas longas e complexas, armazená-las em variáveis de ambiente e implementar política de rotação de chaves. |
+| 2   | Vulnerabilidade de truncamento do Bcrypt  | Baixa         | Alto    | Garantir que a entrada para o hashing de senha nunca exceda 72 bytes e tratar a senha de forma isolada, sem concatenação.       |
+| 3   | Lentidão do sistema com aumento de dados  | Média         | Média   | Otimizar consultas com indexação, implementar paginação e planejar arquitetura para escalabilidade futura.                      |
+| 4   | Código de baixa qualidade com bugs        | Alta          | Média   | Adotar práticas de código limpo, revisões de código (code review) e testes unitários e de integração contínua.                  |
+_______________________________________________________________________________________________________________________________________________________________________________________________________________
+---
 
-Risco
-Probabilidade
-Impacto
-Mitigação
-TÉCNICOS
-1. Chave secreta do JWT comprometida
-Média
-Alto
-Utilizar chaves secretas longas e complexas, armazená-las de forma segura em variáveis de ambiente e implementar uma política de rotação de chaves.
-2. Vulnerabilidade de truncamento do Bcrypt
-Baixa
-Alto
-Garantir que a entrada para o hashing de senha nunca exceda o limite de 72 bytes, tratando a senha de forma isolada, sem concatenação com outros dados.
-3. Lentidão do sistema com aumento de dados
-Média
-Média
-Otimizar consultas ao banco de dados com indexação, implementar paginação nos resultados e planejar a arquitetura para escalabilidade futura.
-4. Código de baixa qualidade com bugs
-Alta
-Média
-Adotar práticas de código limpo, realizar revisões de código (code review) e implementar testes unitários e de integração contínua.
-GERENCIAMENTO
-5. Aumento do escopo (Scope Creep)
-Alta
-Média
-Formalizar um processo de controle de mudanças. Analisar o impacto de cada nova solicitação no prazo e custo antes da aprovação.
-6. Atraso na entrega do projeto
-Alta
-Média
-Utilizar metodologias ágeis para entregas incrementais, reavaliar o cronograma a cada sprint e manter uma comunicação transparente sobre o progresso.
-7. Requisitos mal interpretados
-Média
-Alto
-Validar protótipos e wireframes com os usuários finais (técnicos e gestores) antes do desenvolvimento e manter uma comunicação constante para esclarecer dúvidas.
-ORGANIZACIONAIS
-8. Resistência dos usuários à nova ferramenta
-Média
-Alto
-Envolver os usuários-chave desde o início do projeto, criar uma interface amigável (UI/UX) e comunicar claramente os benefícios do novo sistema.
-9. Inserção de dados incorretos no sistema
-Média
-Alto
-Implementar validações robustas nos formulários de cadastro e, se possível, criar um processo de importação e validação de dados existentes.
-10. Falta de treinamento para os usuários
-Média
-Média
-Desenvolver manuais de usuário, realizar sessões de treinamento práticas para cada perfil (técnico, gestor, administrador) e oferecer canais de suporte.
+### Riscos de Gerenciamento
+__________________________________________________________________________________________________________________________________________________________________________________________
+| ID  | Risco                             | Probabilidade | Impacto | Mitigação                                                                                                           |
+|-----|-----------------------------------|---------------|---------|---------------------------------------------------------------------------------------------------------------------|
+| 5   | Aumento do escopo (Scope Creep)   | Alta          | Média   | Formalizar processo de controle de mudanças e avaliar impacto em prazo/custo antes da aprovação.                    |
+| 6   | Atraso na entrega do projeto      | Alta          | Média   | Utilizar metodologias ágeis, reavaliar cronograma a cada sprint e manter comunicação transparente sobre progresso.  |
+| 7   | Requisitos mal interpretados      | Média         | Alto    | Validar protótipos e wireframes com usuários finais e manter comunicação constante para esclarecimento.             |
+__________________________________________________________________________________________________________________________________________________________________________________________|
+---
 
-
-
-                   
+### Riscos Organizacionais
+________________________________________________________________________________________________________________________________________________________________________________________________________
+| ID  | Risco                                    | Probabilidade | Impacto | Mitigação                                                                                                                  |
+|-----|------------------------------------------|---------------|---------|----------------------------------------------------------------------------------------------------------------------------|
+| 8   | Resistência dos usuários à nova ferramenta | Média       | Alto    | Envolver usuários-chave desde o início, criar interface amigável (UI/UX) e comunicar benefícios do sistema.                |
+| 9   | Inserção de dados incorretos no sistema  | Média         | Alto    | Implementar validações robustas nos formulários e, se possível, importar/validar dados existentes.                         |
+| 10  | Falta de treinamento para os usuários    | Média         | Média   | Criar manuais de usuário, realizar treinamentos práticos por perfil (técnico, gestor, administrador) e oferecer suporte.   |
+________________________________________________________________________________________________________________________________________________________________________________________________________|
