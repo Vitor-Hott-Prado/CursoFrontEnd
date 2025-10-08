@@ -1,20 +1,16 @@
+import Equipamento, { IEquipamento } from "@/models/Equipamento";
+import connectMongo from "@/services/mongodb"
 
 
 //getAll
-
-
-import Equipamento, { IEquipamento } from "@/models/Equipamento";
-import connectMongo from "@/services/mongodb";
-
-export const getALLEquipamento = async() =>{
+export const getAllEquipamento = async() =>{
     await connectMongo(); //estabelece conexão ???
-    const equipamentos = await Equipamento.find([]); //listar todos os usuários da coleção
-    return equipamentos;
+    const Equipamentos = await Equipamento.find([]); //listar todos os usuários da coleção
+    return Equipamentos;
 };
 
 //getOne
-
-export const getONeEquipamento = async(id:string) =>{
+export const getOneEquipamento = async(id:string) =>{
     await connectMongo(); //estabelece conexão
     const equipamento = await Equipamento.findById(id); //listar todos os usuários da coleção
     return equipamento;
@@ -23,23 +19,20 @@ export const getONeEquipamento = async(id:string) =>{
 //create
 export const createEquipamento = async(data: Partial<IEquipamento>) =>{
     await connectMongo();
-    const novoEquipamento = new Equipamento(data);  // cria um usuario a partir do Schema           
+    const novoEquipamento = new Equipamento(data); // cria um Equipamento a partir do Schema
     const novoEquipamentoId = novoEquipamento.save();
     return novoEquipamentoId; //retorna o novo usuário já com o ID
 };
 
-//update    
+//update
 export const updateEquipamento = async(id:string, data: Partial<IEquipamento>) =>{
     await connectMongo();
-    const equipamentoAtualizado = await Equipamento.findById
-    (id, data, {new:true});
-    return equipamentoAtualizado; //retorna o novo usuário Atualizado
+    const EquipamentoAtualizado = await Equipamento.findByIdAndUpdate(id, data, {new:true});
+    return EquipamentoAtualizado; //retorna o novo usuário Atualizado
 };
-
 
 //delete
 export const deleteEquipamento = async(id: string) =>{
     await connectMongo();
     await Equipamento.findByIdAndDelete(id);
 };
-
