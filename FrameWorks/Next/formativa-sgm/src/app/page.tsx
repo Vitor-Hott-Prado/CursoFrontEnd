@@ -3,7 +3,8 @@
 //direcionar par página de login
 
 export default function Home(){
-  //userEfect => criar um usuario admin ao carregr o site 
+
+  //useEffect => criar um usuario admim ai carregar o site
   return(
     <div>
       <h1>Bem-Vindo ao Sistema de Gestão de Manutenção</h1>

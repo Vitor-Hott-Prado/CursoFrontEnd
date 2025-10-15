@@ -36,13 +36,13 @@ export default function DashboardPage(){
 
     return (
         <div>
-              <header>
+            <header>
                 <h1>Bem-Vindo</h1>
                 <button onClick={handleLogout}>Logout</button>
-              </header>
-              <main>
+            </header>
+            <main>
                 {renderDashboard()}
-              </main>
+            </main>
         </div>
     );
 }
