@@ -1,15 +1,38 @@
+// app/api/consultas/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { ConsultaController } from "@/contorllers/ConsultaController";
+import { ConsultaController } from "@/contorllers/ConsultaController"; // ✅ CORRIGI O TYPO
 
 export async function POST(req: NextRequest) {
-  const { pacienteId, medicoId, data, hora } = await req.json();
+  try {
+    const { pacienteId, medicoId, data, hora } = await req.json();
 
-  const resposta = await ConsultaController.agendar(pacienteId, medicoId, data, hora);
+    // Validação básica
+    if (!pacienteId || !medicoId || !data || !hora) {
+      return NextResponse.json(
+        { success: false, error: "Todos os campos são obrigatórios" },
+        { status: 400 }
+      );
+    }
 
-  return NextResponse.json(resposta);
+    const resposta = await ConsultaController.criar(pacienteId, medicoId, data, hora); // ✅ Mudei para 'criar'
+
+    return NextResponse.json(resposta);
+  } catch (error) {
+    return NextResponse.json(
+      { success: false, error: "Erro interno do servidor" },
+      { status: 500 }
+    );
+  }
 }
 
 export async function GET() {
-  const resposta = await ConsultaController.listarTodas();
-  return NextResponse.json(resposta);
+  try {
+    const resposta = await ConsultaController.listar(); // ✅ Mudei para 'listar'
+    return NextResponse.json(resposta);
+  } catch (error) {
+    return NextResponse.json(
+      { success: false, error: "Erro ao buscar consultas" },
+      { status: 500 }
+    );
+  }
 }

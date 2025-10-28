@@ -1,33 +1,33 @@
+// services/consultaService.ts
 import connectMongo from "@/services/mongodb";
-import Consulta, { IConsulta } from "@/models/Consulta";
+import Consulta from "@/models/Consulta";
 
-// Criar consulta
-export const criar = async (paciente: string, medico: string, data: Date, descricao?: string) => {
+export const criar = async (dados: any) => {
   await connectMongo();
-  const novaConsulta = new Consulta({ paciente, medico, data, descricao });
-  return await novaConsulta.save();
+  return await Consulta.create(dados);
 };
 
-// Listar todas as consultas
 export const listar = async () => {
   await connectMongo();
-  return await Consulta.find([]).populate("paciente").populate("medico");
+  return await Consulta.find({})
+    .populate('pacienteId')
+    .populate('medicoId');
 };
 
-// Buscar consulta por ID
-export const buscarPorId = async (id: string) => {
+export const listarPorMedico = async (medicoId: string) => {
   await connectMongo();
-  return await Consulta.findById(id).populate("paciente").populate("medico");
+  return await Consulta.find({ medicoId })
+    .populate('pacienteId')
+    .populate('medicoId');
 };
 
-// Atualizar consulta
-export const atualizar = async (id: string, data: Partial<IConsulta>) => {
+export const verificarDisponibilidade = async (medicoId: string, data: string, hora: string) => {
   await connectMongo();
-  return await Consulta.findByIdAndUpdate(id, data, { new: true });
-};
-
-// Deletar consulta
-export const deletar = async (id: string) => {
-  await connectMongo();
-  return await Consulta.findByIdAndDelete(id);
+  const consultaConflitante = await Consulta.findOne({
+    medicoId,
+    data,
+    hora,
+    status: { $ne: 'cancelada' }
+  });
+  return !consultaConflitante; // true = disponível, false = ocupado
 };
