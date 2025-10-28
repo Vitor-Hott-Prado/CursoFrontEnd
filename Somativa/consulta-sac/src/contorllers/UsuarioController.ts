@@ -11,7 +11,7 @@ export const UsuarioController = {
     const medico = new Usuario({
       nome,
       email,
-      senha: hashSenha,
+      senha,
       funcao: "medico"
     });
 

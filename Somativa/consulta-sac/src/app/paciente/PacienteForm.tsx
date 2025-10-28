@@ -9,6 +9,7 @@ interface PacienteFormProps {
 export default function PacienteForm({ onSuccess }: PacienteFormProps) {
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
+  const [dataConsulta, setDataConsulta] = useState("");
   const [erro, setErro] = useState("");
   const [sucesso, setSucesso] = useState("");
 
@@ -21,7 +22,7 @@ export default function PacienteForm({ onSuccess }: PacienteFormProps) {
       const resposta = await fetch("/api/pacientes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, telefone }),
+        body: JSON.stringify({ nome, telefone, dataConsulta }),
       });
 
       const data = await resposta.json();
@@ -30,6 +31,7 @@ export default function PacienteForm({ onSuccess }: PacienteFormProps) {
         setSucesso("Paciente cadastrado com sucesso!");
         setNome("");
         setTelefone("");
+        setDataConsulta("");
         if (onSuccess) onSuccess();
       } else {
         setErro(data.error || "Erro ao cadastrar paciente");
@@ -61,6 +63,16 @@ export default function PacienteForm({ onSuccess }: PacienteFormProps) {
           type="text"
           value={telefone}
           onChange={(e) => setTelefone(e.target.value)}
+          required
+        />
+      </div>
+
+      <div>
+        <label>Data da Consulta:</label>
+        <input
+          type="date"
+          value={dataConsulta}
+          onChange={(e) => setDataConsulta(e.target.value)}
           required
         />
       </div>
