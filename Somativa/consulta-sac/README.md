@@ -80,7 +80,7 @@ classDiagram
     }
 ```   
 
-
+##  FLUXO DE AGENDAMENTO - CASO DE USO
 ```mermaid
 flowchart  TD
     A[Recepcionista] --> B[Seleciona paciente]
@@ -93,6 +93,7 @@ flowchart  TD
 ```
 
 
+## DIAGRAMA DE FLUXO
 ```mermaid
 flowchart TD
     Start([Início]) --> Login[Login no Sistema]
