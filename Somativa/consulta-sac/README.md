@@ -81,7 +81,8 @@ classDiagram
 ```   
 
 
-```graph TD
+```mermiad
+graph TD
     A[Recepcionista] --> B[Seleciona paciente]
     B --> C[Seleciona médico]
     C --> D[Escolhe data e hora]
@@ -92,25 +93,26 @@ classDiagram
 ```
 
 
-```flowchart TD
-    Start([Início]) --> Login[🔐 Login no Sistema]
+```mermaid
+flowchart TD
+    Start([Início]) --> Login[Login no Sistema]
     Login --> VerificaTipo{Verifica Tipo Usuário}
     
-    VerificaTipo -->|Recepcionista| Agendar[📅 Agendar Consulta]
-    VerificaTipo -->|Médico| VisualizarAgenda[👨‍⚕️ Visualizar Minha Agenda]
-    VerificaTipo -->|Paciente| MinhasConsultas[👤 Ver Minhas Consultas]
+    VerificaTipo -->|Recepcionista| Agendar[Agendar Consulta]
+    VerificaTipo -->|Médico| VisualizarAgenda[Visualizar Minha Agenda]
+    VerificaTipo -->|Paciente| MinhasConsultas[Ver Minhas Consultas]
     
     Agendar --> SelecionaPaciente[Selecionar Paciente]
     SelecionaPaciente --> EscolheMedico[Escolher Médico]
-    EscolheMedico --> VerificaDisponibilidade{📅 Verificar Disponibilidade}
+    EscolheMedico --> VerificaDisponibilidade{Verificar Disponibilidade}
     
-    VerificaDisponibilidade -->|Disponível| Confirma[✅ Confirmar Agendamento]
-    VerificaDisponibilidade -->|Indisponível| SugerirAlternativas[🔄 Sugerir Alternativas]
+    VerificaDisponibilidade -->|Disponível| Confirma[Confirmar Agendamento]
+    VerificaDisponibilidade -->|Indisponível| SugerirAlternativas[Sugerir Alternativas]
     
-    Confirma --> SalvaBanco[💾 Salvar no Banco de Dados]
-    SalvaBanco --> NotificaMédico[📧 Notificar Médico]
-    SalvaBanco --> NotificaPaciente[📱 Notificar Paciente]
-    SalvaBanco --> Fim([Agendamento Concluído 🎉])
+    Confirma --> SalvaBanco[Salvar no Banco de Dados]
+    SalvaBanco --> NotificaMedico[Notificar Médico]
+    SalvaBanco --> NotificaPaciente[Notificar Paciente]
+    SalvaBanco --> Fim([Agendamento Concluído])
     
     SugerirAlternativas --> EscolheMedico
 ```
