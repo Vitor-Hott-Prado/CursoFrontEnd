@@ -81,7 +81,7 @@ classDiagram
 ```   
 
 
-```flowchart TD
+```mermaid TD
     A[Recepcionista] --> B[Seleciona paciente]
     B --> C[Seleciona médico]
     C --> D[Escolhe data e hora]
