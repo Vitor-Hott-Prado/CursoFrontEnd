@@ -81,10 +81,7 @@ classDiagram
 ```   
 
 
-```mermaid
-    Usuario --> Consulta : agenda
-    Paciente --> Consulta : participaflowchart TD
-    
+```flowchart TD
     A[Recepcionista] --> B[Seleciona paciente]
     B --> C[Seleciona médico]
     C --> D[Escolhe data e hora]
@@ -129,3 +126,7 @@ TypeScript
 Mermaid.js para diagramas
 
 Node.js / Express (caso precise para serviços)
+
+## Figma
+
+https://www.figma.com/design/qvtFlhEOlTqUVGyjYtk8yv/Sem-t%C3%ADtulo?node-id=5-199&t=HMZ69pGXl4wTcbOq-1
