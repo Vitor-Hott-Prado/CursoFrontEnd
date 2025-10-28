@@ -92,6 +92,29 @@ classDiagram
 ```
 
 
+```flowchart TD
+    Start([Início]) --> Login[🔐 Login no Sistema]
+    Login --> VerificaTipo{Verifica Tipo Usuário}
+    
+    VerificaTipo -->|Recepcionista| Agendar[📅 Agendar Consulta]
+    VerificaTipo -->|Médico| VisualizarAgenda[👨‍⚕️ Visualizar Minha Agenda]
+    VerificaTipo -->|Paciente| MinhasConsultas[👤 Ver Minhas Consultas]
+    
+    Agendar --> SelecionaPaciente[Selecionar Paciente]
+    SelecionaPaciente --> EscolheMedico[Escolher Médico]
+    EscolheMedico --> VerificaDisponibilidade{📅 Verificar Disponibilidade}
+    
+    VerificaDisponibilidade -->|Disponível| Confirma[✅ Confirmar Agendamento]
+    VerificaDisponibilidade -->|Indisponível| SugerirAlternativas[🔄 Sugerir Alternativas]
+    
+    Confirma --> SalvaBanco[💾 Salvar no Banco de Dados]
+    SalvaBanco --> NotificaMédico[📧 Notificar Médico]
+    SalvaBanco --> NotificaPaciente[📱 Notificar Paciente]
+    SalvaBanco --> Fim([Agendamento Concluído 🎉])
+    
+    SugerirAlternativas --> EscolheMedico
+```
+
 ## Estrutura
 
 
