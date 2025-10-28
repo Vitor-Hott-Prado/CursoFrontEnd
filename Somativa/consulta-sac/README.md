@@ -81,7 +81,7 @@ classDiagram
 ```   
 
 
-```mermiad
+```mermaid
 graph TD
     A[Recepcionista] --> B[Seleciona paciente]
     B --> C[Seleciona médico]
